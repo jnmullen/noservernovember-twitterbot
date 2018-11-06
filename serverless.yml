@@ -1,0 +1,16 @@
+service: noservernovember-twitterbot
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: eu-west-1
+
+# you can define service wide environment variables here
+#  environment:
+#    variable1: value1
+
+functions:
+  hello:
+    handler: handler.twitterbot
+    events:
+      - schedule: rate(4 hours)
