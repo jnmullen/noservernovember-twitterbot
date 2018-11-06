@@ -13,7 +13,11 @@ async function getDadJoke() {
 	const data = await request(endpoint, query);
 	console.log(data.joke.joke);
 	return data.joke.joke;
-} 
+}
+
+async function sendTweet(joke) {
+
+}
 
 exports.twitterbot = async (event) => {
     return await getDadJoke() ;
