@@ -5,12 +5,13 @@ provider:
   runtime: nodejs8.10
   region: eu-west-1
 
-# you can define service wide environment variables here
-#  environment:
-#    variable1: value1
-
 functions:
   hello:
     handler: handler.twitterbot
     events:
       - schedule: rate(4 hours)
+    environment:
+            TWITTER_CONSUMER_KEY: ${file(./serverless.env.yml):twitter.TWITTER_CONSUMER_KEY}
+            TWITTER_CONSUMER_SECRET: ${file(./serverless.env.yml):twitter.TWITTER_CONSUMER_SECRET}
+            TWITTER_ACCESS_TOKEN_KEY: ${file(./serverless.env.yml):twitter.TWITTER_ACCESS_TOKEN_KEY}
+            TWITTER_ACCESS_TOKEN_SECRET: ${file(./serverless.env.yml):twitter.TWITTER_ACCESS_TOKEN_SECRET}
