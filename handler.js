@@ -1,5 +1,5 @@
 const request = require('graphql-request').request;
-const twitter = require('twitter');
+const Twitter = require('twitter');
 
 const endpoint = 'https://icanhazdadjoke.com/graphql'
 
@@ -23,15 +23,11 @@ async function getDadJoke() {
 }
 
 async function sendTweet(joke) {
-	client.post('statuses/update', {status: joke}, function(error,tweet,response) {
-		if(error) throw error;
-		console.log(tweet);
-		console.log(response);
-	});
+	const tweet = await client.post('statuses/update', {status: `${joke} - powered by AWS Lambda / serverless framework for #NoServerNovember`} );
+	return tweet;
 }
 
 exports.twitterbot = async (event) => {
     const joke = await getDadJoke() ;
     return sendTweet(joke);
 };
-
