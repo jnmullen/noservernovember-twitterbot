@@ -6,7 +6,7 @@ provider:
   region: eu-west-1
 
 functions:
-  hello:
+  twitterbot:
     handler: handler.twitterbot
     events:
       - schedule: rate(4 hours)
